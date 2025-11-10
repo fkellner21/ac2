@@ -20,7 +20,7 @@ resource "aws_security_group" "ec2_security_group" {
     for_each = {
       "80" = {
         description = "Allow incoming HTTP connections"
-        port        = 8080
+        port        = 80
       }
     }
     iterator = sg_ingress
