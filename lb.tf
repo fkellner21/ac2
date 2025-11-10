@@ -1,4 +1,4 @@
-resource "aws_security_group" "aws-sg-load-balancer" {
+resource "aws_security_group" "aws_sg_load_balancer" {
   description = "Allow incoming connections for load balancer"
   vpc_id      = aws_vpc.app_vpc.id
   ingress {
