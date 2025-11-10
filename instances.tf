@@ -53,7 +53,7 @@ resource "aws_instance" "web" {
   user_data = <<-EOF
   #!/bin/bash
   yum update -y
-  yum install -v httpd.x86_64
+  yum install -y httpd.x86_64
   systemctl start httpd.service
   systemctl enable httpd.service
 
