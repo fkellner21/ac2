@@ -75,5 +75,5 @@ resource "aws_alb_target_group_attachment" "tgattachment" {
 }
 
 output "lb-dns" {
-  value = aws_lb.aws-application_load_balancer.dns_name
+  value = aws_lb.aws_application_load_balancer.dns_name
 }
