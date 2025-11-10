@@ -3,7 +3,7 @@ data "aws_ami" "amazon-linux-2023" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["al2023-ami-2023.*-x86_64"]
+    values = ["al2023-ami-2023*"]
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_security_group" "ec2_security_group" {
 
 resource "aws_instance" "web" {
   ami                    = data.aws_ami.amazon-linux-2023.id
-  instance_type          = "t3.micros"
+  instance_type          = "t3.micro"
   key_name               = "vockey"
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
 
@@ -64,7 +64,7 @@ resource "aws_instance" "web" {
   privHostName=$(curl -s http://169.254.169.254/latest/meta-data/local-hostname --header "X-aws-ec2-metadata-token: $TOKEN")
   privIPv4=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4 --header "X-aws-ec2-metadata-token: $TOKEN")
   
-  echo "<font face = "Verdana" size = "5">"                               > /var/www/html/index.html
+  echo '<font face = "Verdana" size = "5">'                               > /var/www/html/index.html
   echo "<center><h1>AWS Linux VM Deployed with Terraform</h1></center>"   >> /var/www/html/index.html
   echo "<center> <b>EC2 Instance Metadata</b> </center>"                  >> /var/www/html/index.html
   echo "<center> <b>Instance ID:</b> $instanceId </center>"               >> /var/www/html/index.html
