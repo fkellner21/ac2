@@ -23,7 +23,7 @@ resource "aws_security_group" "aws_sg_load_balancer" {
 resource "aws_lb" "aws-application_load_balancer" {
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.aws-sg-load-balancer.id]
+  security_groups    = [aws_security_group.aws_sg_load_balancer.id]
   subnets            = aws_subnet.public_subnets[*].id
   enable_deletion_protection = false
 
