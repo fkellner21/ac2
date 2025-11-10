@@ -73,7 +73,7 @@ resource "aws_route_table" "private_route_table" {
   count = 2
   route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.natgateway[count.index].id
+    nat_gateway_id = aws_nat_gateway.natgateway[0].id
   }
 
   tags = {
@@ -92,7 +92,7 @@ resource "aws_eip" "eip_natgw" {
 }
 
 resource "aws_nat_gateway" "natgateway" {
-  count         = 2
+  count         = 1
   allocation_id = aws_eip.eip_natgw[count.index].id
-  subnet_id     = aws_subnet.public_subnets[count.index].id
+  subnet_id     = element(aws_subnet.public_subnets[*].id, 0)
 }
