@@ -88,7 +88,7 @@ resource "aws_route_table_association" "private_rt_asso" {
 }
 
 resource "aws_eip" "eip_natgw" {
-  count = 1
+  count = 2
 }
 
 resource "aws_nat_gateway" "natgateway" {
